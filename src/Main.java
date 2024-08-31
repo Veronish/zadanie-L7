@@ -12,7 +12,7 @@ public class Main {
         System.out.println(sumCheck(9,11));
         plusOrNot(4);
         System.out.println(plusOrNotReturn(0));
-        prntStrXTimes(1,"Съешь еще этих мягких французких булок и выпей чаю");
+        prntStrXTimes(1,"Съешь еще этих мягких французких булок и выпей чаю ");
         System.out.println(isYearLeap(104));
         task10();
         task11();
