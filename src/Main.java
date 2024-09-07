@@ -11,7 +11,7 @@ public class Main {
         emploeeArray[1] = new Emploee("petr dyrow", "zam-direktor", "post13@mail.mail", "34443567", 250, 18);
         emploeeArray[2] = new Emploee("ivanna ymbvn", "secretar", "post17@mail.mail", "119655567", 50, 20);
         emploeeArray[3] = new Emploee("sveta light", "bibliotekar", "post16@mail.mail", "125468467", 40, 21);
-        emploeeArray[4] = new Emploee("katya brown", "stajer", "post11@mail.mail", "9672343567", 3, 21);
+        emploeeArray[4] = new Emploee("katya brown", "stajer", "post11@mail.mail", "9672343569", 3, 21);
 
         emploeeArray[3].printInfo();
 
