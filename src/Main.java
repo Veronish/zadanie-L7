@@ -85,8 +85,9 @@ public class Main {
 
         System.out.println(Arrays.toString(task10));
         for (int i = 0; i < task10.length; i++) {
-            if (task10[i] == 0) task10[i] = 1;
-            else task10[i] = 0;
+            if (task10[i] == 0) {
+                task10[i] = 1;
+            } else task10[i] = 0;
         }
         System.out.println(Arrays.toString(task10));
     }
