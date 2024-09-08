@@ -1,5 +1,14 @@
 public class Cat extends Animal {
-    String name;
+
+    private static int catCount;
+
+    public boolean satiety;//сытость
+
+    public void isSatiety() { //кот голодный или нет
+        if (this.satiety) {
+            System.out.println("Cat is full");
+        } else System.out.println("Cat still hungry");
+    }
 
     @Override
     public void swim(int meters) {
@@ -8,9 +17,28 @@ public class Cat extends Animal {
 
     @Override
     public void run(int meters) {
-        if (meters < 200) {
-            System.out.println("Cat " + name + "run " + meters + "distantion");
-        } else System.out.println("Cat " + name + "can't run " + meters + "distantion");
+        if (meters <= 200) {
+            System.out.println("Cat run " + meters + " meters");
+        } else System.out.println("Cat can't run " + meters + " meters");
     }
+
+    public Cat() {
+        catCount++;
+    }
+
+    public static void getCatCount() {
+        System.out.println("Total cats created: " + catCount);
+    }
+
+    public void feedCat(int countOfFood) {
+        // System.out.println(countOfFood); посмотреть сколько получилось значение еды
+        if (Dish.feedCat(countOfFood)) {
+
+            this.satiety = true;
+        }
+        isSatiety();
+
+    }
+
 
 }
