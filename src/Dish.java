@@ -3,7 +3,7 @@ public class Dish {
     private static int countMealInDish = 15;
 
     public static void addMealToDish(int countMeal) { // добавить еду в миску
-        countMealInDish = +countMeal;
+        countMealInDish = countMealInDish+countMeal;
     }
 
     public static boolean feedCat(int countOfFood) {
