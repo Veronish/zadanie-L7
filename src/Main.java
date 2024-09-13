@@ -16,6 +16,13 @@ public class Main {
         emploeeArray[3].printInfo();
 
 
+        Park park1 = new Park();
+        Park.Attractions attractions1 = new Park.Attractions("Name1","11-12",15);
+        Park.Attractions attractions2 = new Park.Attractions("Namw2","from 9 to 17", 20);
+
+        System.out.println(attractions1.getNameAttr());
+        attractions1.setNameAttr("Pomogite");
+        System.out.println(attractions1.getNameAttr());
     }
 
 }
