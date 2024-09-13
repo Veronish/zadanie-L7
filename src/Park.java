@@ -3,13 +3,13 @@ public class Park {
     private Boolean isOpen;
     private Boolean isForChildren;
 
-    public Park(String addres, Boolean isOpen, Boolean isForChildren){
+    public Park(String addres, Boolean isOpen, Boolean isForChildren) {
         this.addres = addres;
         this.isOpen = isOpen;
         this.isForChildren = isForChildren;
     }
 
-    public String getAddres(){
+    public String getAddres() {
         return addres;
     }
 
@@ -47,15 +47,16 @@ public class Park {
         public String getNameAttr() {
             return nameAttr;
         }
-        public String getTimeWorkAttr(){
-            return  timeWorkAttr;
+
+        public String getTimeWorkAttr() {
+            return timeWorkAttr;
         }
 
         public int getPriseAttr() {
             return priseAttr;
         }
 
-        public void setNameAttr(String nameAttr){
+        public void setNameAttr(String nameAttr) {
             this.nameAttr = nameAttr;
         }
 

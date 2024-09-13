@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
@@ -18,8 +16,8 @@ public class Main {
 
         Park park1 = new Park("Pushkina 1", true, false);
         System.out.println(park1.getAddres());
-        Park.Attractions attractions1 = new Park.Attractions("Name1","11-12",15);
-        Park.Attractions attractions2 = new Park.Attractions("Namw2","from 9 to 17", 20);
+        Park.Attractions attractions1 = new Park.Attractions("Name1", "11-12", 15);
+        Park.Attractions attractions2 = new Park.Attractions("Namw2", "from 9 to 17", 20);
 
         System.out.println(attractions1.getNameAttr());
         attractions1.setNameAttr("Pomogite");
