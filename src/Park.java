@@ -3,6 +3,36 @@ public class Park {
     private Boolean isOpen;
     private Boolean isForChildren;
 
+    public Park(String addres, Boolean isOpen, Boolean isForChildren){
+        this.addres = addres;
+        this.isOpen = isOpen;
+        this.isForChildren = isForChildren;
+    }
+
+    public String getAddres(){
+        return addres;
+    }
+
+    public Boolean getIsForChildren() {
+        return isForChildren;
+    }
+
+    public Boolean getIsOpen() {
+        return isOpen;
+    }
+
+    public void setAddres(String addres) {
+        this.addres = addres;
+    }
+
+    public void setIsForChildren(Boolean forChildren) {
+        isForChildren = forChildren;
+    }
+
+    public void setIsOpen(Boolean open) {
+        isOpen = open;
+    }
+
     public static class Attractions {
         private String nameAttr;
         private String timeWorkAttr;

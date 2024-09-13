@@ -16,7 +16,8 @@ public class Main {
         emploeeArray[3].printInfo();
 
 
-        Park park1 = new Park();
+        Park park1 = new Park("Pushkina 1", true, false);
+        System.out.println(park1.getAddres());
         Park.Attractions attractions1 = new Park.Attractions("Name1","11-12",15);
         Park.Attractions attractions2 = new Park.Attractions("Namw2","from 9 to 17", 20);
 
