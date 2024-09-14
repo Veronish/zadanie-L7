@@ -1,6 +1,6 @@
 public class Dish {
 
-    private int countMealInDish = 15;
+    private int countMealInDish;
 
     public Dish(int countMeal) {
         countMealInDish = countMeal;
