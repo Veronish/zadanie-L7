@@ -1,4 +1,4 @@
-public class Animal {
+public abstract class Animal {
     private static int animalCount;
 
     public void run(int meters) {
@@ -9,7 +9,7 @@ public class Animal {
         System.out.println("Animal swim " + meters + " meters");
     }
 
-    public Animal() {
+   public Animal() {
         animalCount++;
     }
 

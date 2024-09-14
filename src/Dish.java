@@ -1,16 +1,25 @@
 public class Dish {
 
-    private static int countMealInDish = 15;
+    private int countMealInDish = 15;
 
-    public static void addMealToDish(int countMeal) { // добавить еду в миску
-        countMealInDish = countMealInDish+countMeal;
+    public Dish(int countMeal) {
+        countMealInDish = countMeal;
     }
 
-    public static boolean feedCat(int countOfFood) {
+    public void addMealToDish(int countMeal) { // добавить еду в миску
+        countMealInDish += countMeal;
+    }
+
+    public void info() {
+        System.out.println("Count meal in dish:" + countMealInDish);
+    }
+
+    public boolean isEnoughMealInDish(int countOfFood) {
         if (countMealInDish - countOfFood >= 0) {
             countMealInDish = countMealInDish - countOfFood;
             return true;
         } else return false;
     }
+
 
 }

@@ -30,11 +30,11 @@ public class Cat extends Animal {
         System.out.println("Total cats created: " + catCount);
     }
 
-    public void feedCat(int countOfFood) {
-        // System.out.println(countOfFood); посмотреть сколько получилось значение еды
-        if (Dish.feedCat(countOfFood)) {
-
+    public void feedCat(Dish dish, int countOfFood) {
+        // System.out.println(countOfFood); // посмотреть сколько получилось значение еды
+        if (dish.isEnoughMealInDish(countOfFood)) {
             this.satiety = true;
+
         }
         isSatiety();
 
