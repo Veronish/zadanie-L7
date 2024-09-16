@@ -52,7 +52,7 @@ public class TestCase {
                 assertEquals(Factorial(a), 479001600, () -> "Факториал 12и неверный");
                 break;
         }
-        //assertEquals(Factorial(a), 120, () -> "Факториал не = 5");
+
     }
 
     @Test
@@ -60,12 +60,12 @@ public class TestCase {
     void test5() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> Factorial(-1));
     }
+
     @Test
     @DisplayName("Проверка ввода слишком большого числа")
     void test6() {
         Assertions.assertThrows(OutOfMemoryError.class, () -> Factorial(21));
     }
-
 
 
 }
