@@ -1,7 +1,4 @@
 import jdk.jfr.Description;
-import org.example.Main;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
 import static org.example.Main.Factorial;
