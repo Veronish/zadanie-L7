@@ -105,4 +105,24 @@ public class TestCase {
         Thread.sleep(1500);
         driver.quit();
     }
+    @Test
+    @DisplayName("Картинки платежных систем по-другому")
+    void test5() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://mts.by");
+        Thread.sleep(500);
+
+        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
+            driver.findElement(By.id("cookie-agree")).click();
+        }
+
+        driver.findElement(By.xpath("//img[@alt='Visa']")).isDisplayed();
+        driver.findElement(By.xpath("//img[@alt='Verified By Visa']")).isDisplayed();
+        driver.findElement(By.xpath("//img[@alt='MasterCard']")).isDisplayed();
+        driver.findElement(By.xpath("//img[@alt='MasterCard Secure Code']")).isDisplayed();
+        driver.findElement(By.xpath("//img[@alt='Белкарт']")).isDisplayed();
+
+        driver.quit();
+    }
 }
