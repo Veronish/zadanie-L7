@@ -105,6 +105,7 @@ public class TestCase {
         Thread.sleep(1500);
         driver.quit();
     }
+
     @Test
     @DisplayName("Картинки платежных систем по-другому")
     void test5() throws InterruptedException {
