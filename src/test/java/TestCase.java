@@ -48,7 +48,7 @@ public class TestCase {
             driver.findElement(By.id("cookie-agree")).click();
         }
 
-        driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[\"a\"]/img")).isDisplayed();
+        driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[" + a + "]/img")).isDisplayed();
         driver.quit();
     }
 
