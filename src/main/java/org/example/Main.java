@@ -22,12 +22,12 @@ public class Main {
     }
 
     public static class OnlinePay {
+        private final WebDriver driver;
         By telephoneLocator = By.id("connection-phone");
         By moneyLocator = By.id("connection-sum");
         By emailLocator = By.id("connection-email");
         By submitButton = By.xpath("/html/body/div[6]/main/div/div[4]/div[1]/div/div/div[2]/section/div/div[1]/div[2]/form[1]/button");
         By menuButton = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[1]/div[1]/div[2]");
-        private final WebDriver driver;
 
 
         public OnlinePay(WebDriver driver) {
