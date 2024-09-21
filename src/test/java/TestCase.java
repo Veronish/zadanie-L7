@@ -1,105 +1,54 @@
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.example.Main;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestCase {
 
     @Test
-    @DisplayName("Заголовок")
+    @DisplayName("Надписи в незаполненных полях")
     void test1() throws InterruptedException {
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://mts.by");
         Thread.sleep(500);
+        Main.OnlinePay onlinePay = new Main.OnlinePay(driver);
 
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
+        onlinePay.ifCookies();
 
-        //Заголовок
-        assumeTrue(driver.getPageSource().contains("Онлайн пополнение <br>без комиссии"), "Заголовок \"Онлайн пополнение без комиссии\" отсутствует на странице или он не правильный");
-
-        Thread.sleep(1500);
-        driver.quit();
-    }
-
-    @ParameterizedTest
-    @DisplayName("Картинки платежных систем")
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    @IgnoreForBinding
-    void test2(int a) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://mts.by");
-        Thread.sleep(500);
-
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
-
-        driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[" + a + "]/img")).isDisplayed();
-        driver.quit();
-    }
-
-    @Test
-    @DisplayName("Ссылка подробнее о сервисе")
-    void test3() throws InterruptedException {
-
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://mts.by");
-        Thread.sleep(500);
-
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
-
-        driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/a")).click();
-        if (Objects.equals(driver.getCurrentUrl(), "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/")) {
-            System.out.println("Ссылка подробнее о сервисе работает");
-        }
-        driver.quit();
-    }
-
-    @Test
-    @DisplayName("поля и кнопка продолжить")
-    void test4() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://mts.by");
-        Thread.sleep(500);
-
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
-
-        WebElement telephone = driver.findElement(By.id("connection-phone"));
-        WebElement money = driver.findElement(By.id("connection-sum"));
-        WebElement email = driver.findElement(By.id("connection-email"));
-
-        telephone.click();
-        telephone.sendKeys("297777777");
-        money.click();
-        money.sendKeys("20");
-        email.sendKeys("test@mail.ru");
-        Thread.sleep(1500);
-
-        driver.findElement(By.xpath("/html/body/div[6]/main/div/div[4]/div[1]/div/div/div[2]/section/div/div[1]/div[2]/form[1]/button")).click();
-        Thread.sleep(2500);
-        if (driver.findElement(By.className("bepaid-app")).isDisplayed()) {
-            System.out.println("Vse good");
-        }
+        By element = By.id("connection-phone");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Номер телефона"), "Плейсхолдер Номер телефона не совпадает");
+        element = By.id("connection-sum");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Сумма"), "Плейсхолдер Сумма не совпадает");
+        element = By.id("connection-email");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        onlinePay.selectMenuItem(2);
+        element = By.id("internet-phone");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Номер абонента"), "Плейсхолдер Номер абонента не совпадает");
+        element = By.id("internet-sum");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Сумма"), "Плейсхолдер Сумма не совпадает");
+        element = By.id("internet-email");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        onlinePay.selectMenuItem(3);
+        element = By.id("score-instalment");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Номер счета на 44"), "Плейсхолдер Номер счета на 44 не совпадает");
+        element = By.id("instalment-sum");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Сумма"), "Плейсхолдер Сумма не совпадает");
+        element = By.id("instalment-email");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        onlinePay.selectMenuItem(4);
+        element = By.id("score-arrears");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Номер счета на 2073"), "Плейсхолдер Номер счета на 2073 не совпадает");
+        element = By.id("arrears-sum");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "Сумма"), "Плейсхолдер Сумма не совпадает");
+        element = By.id("arrears-email");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(element, "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
 
         Thread.sleep(1500);
@@ -107,23 +56,46 @@ public class TestCase {
     }
 
     @Test
-    @DisplayName("Картинки платежных систем по-другому")
-    void test5() throws InterruptedException {
+    @DisplayName("Заполнить поня и нажать продолжить, проверить поля")
+    void test2() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         driver.get("https://mts.by");
         Thread.sleep(500);
+        String coins = "20";
+        String tel = "297777777";
 
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
+        Main.OnlinePay onlinePay = new Main.OnlinePay(driver);
+        onlinePay.ifCookies();
+        onlinePay.typeTelephone(tel);
+        onlinePay.typeMoney(coins);
+        onlinePay.typeEmail("email@email.com");
+        onlinePay.submitPay();
 
-        driver.findElement(By.xpath("//img[@alt='Visa']")).isDisplayed();
-        driver.findElement(By.xpath("//img[@alt='Verified By Visa']")).isDisplayed();
-        driver.findElement(By.xpath("//img[@alt='MasterCard']")).isDisplayed();
-        driver.findElement(By.xpath("//img[@alt='MasterCard Secure Code']")).isDisplayed();
-        driver.findElement(By.xpath("//img[@alt='Белкарт']")).isDisplayed();
+        Thread.sleep(1500);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className("bepaid-iframe")));
+        Thread.sleep(1500);
+        //wait.until(ExpectedConditions.elementToBeSelected(By.className("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[2]/app-switcher-form-control/div/app-switcher/div/div")));
+        //wait.until(ExpectedConditions.elementToBeClickable(By.className("gpay-card-info-animation-container black gpay-card-info-animation-container-fade-out")));
+        //ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className("bepaid-iframe"));
+        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]")).getText(),  (String) coins+".00 BYN", "Сумма в заголовке неправильная");
+        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/button")).getText(), "Оплатить " + coins + ".00 BYN", "Сумма на кнопке неправильная");
+        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[2]/span")).getText(), "Оплата: Услуги связи Номер:375" + tel, "Телефон неправильный");
+
+
+        Assertions.assertEquals("Номер карты", driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[1]/label")).getText(), "Плейсхолдер Номер карты неправильный");
+        Assertions.assertEquals("Срок действия", driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[2]/div[1]/app-input/div/div/div[1]/label")).getText(), "Плейсхолдер Срок действия неправильный");
+        Assertions.assertEquals("Имя держателя (как на карте)", driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[3]/app-input/div/div/div[1]/label")).getText(), "Плейсхолдер Имя держателя (как на карте) неправильный");
+        Assertions.assertEquals("CVC", driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[2]/div[3]/app-input/div/div/div[1]/label")).getText(), "Плейсхолдер CVC неправильный");
+
+        Assertions.assertTrue(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[1]")).isDisplayed(), "Visa не отображается");
+        Assertions.assertTrue(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[2]")).isDisplayed(), "Mastercard не отображается");
+        Assertions.assertTrue(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[3]")).isDisplayed(), "Белкарт не отображается");
+        Assertions.assertTrue(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/div")).isDisplayed(), "Мир не отображается");
 
         driver.quit();
     }
+
+
 }
