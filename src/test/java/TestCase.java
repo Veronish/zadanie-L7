@@ -79,7 +79,7 @@ public class TestCase {
         //wait.until(ExpectedConditions.elementToBeSelected(By.className("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[2]/app-switcher-form-control/div/app-switcher/div/div")));
         //wait.until(ExpectedConditions.elementToBeClickable(By.className("gpay-card-info-animation-container black gpay-card-info-animation-container-fade-out")));
         //ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className("bepaid-iframe"));
-        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]")).getText(),  (String) coins+".00 BYN", "Сумма в заголовке неправильная");
+        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]")).getText(),  coins +".00 BYN", "Сумма в заголовке неправильная");
         Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/button")).getText(), "Оплатить " + coins + ".00 BYN", "Сумма на кнопке неправильная");
         Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[2]/span")).getText(), "Оплата: Услуги связи Номер:375" + tel, "Телефон неправильный");
 
