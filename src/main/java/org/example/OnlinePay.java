@@ -1,30 +1,34 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Objects;
 
 public class OnlinePay {
-    private final WebDriver driver;
-    By telephoneLocator = By.id("connection-phone");
-    By moneyLocator = By.id("connection-sum");
-    By emailLocator = By.id("connection-email");
-    By submitButton = By.cssSelector("#pay-connection button");
-    By menuButton = By.cssSelector(".select__header span");
-    By frameLocator = By.className("bepaid-iframe");
-    By spanFrameLocator = By.cssSelector(".pay-description__cost span");
-    By buttonFrameLocator = By.cssSelector(".card-page__card button");
-    By telFrameLocator = By.cssSelector(".pay-description__text span");
-    By card = By.cssSelector(".row.ng-tns-c61-0.ng-star-inserted label");
-    By cardDate = By.cssSelector(".content.ng-tns-c46-4 label");
-    By cardName = By.cssSelector(".content.ng-tns-c46-3 label");
-    By CVC = By.cssSelector(".content.ng-tns-c46-5 label");
+    private static WebDriver driver = null;
+    private static WebDriverWait wait =null;
+    private final By telephoneLocator = By.id("connection-phone");
+    private final By moneyLocator = By.id("connection-sum");
+    private final By emailLocator = By.id("connection-email");
+    private final By submitButton = By.cssSelector("#pay-connection button");
+    private final By menuButton = By.cssSelector(".select__header span");
+    private final By frameLocator = By.className("bepaid-iframe");
+    private final By spanFrameLocator = By.cssSelector(".pay-description__cost span");
+    private final By buttonFrameLocator = By.cssSelector(".card-page__card button");
+    private final By telFrameLocator = By.cssSelector(".pay-description__text span");
+    private final By card = By.cssSelector(".row.ng-tns-c61-0.ng-star-inserted label");
+    private final By cardDate = By.cssSelector(".content.ng-tns-c46-4 label");
+    private final By cardName = By.cssSelector(".content.ng-tns-c46-3 label");
+    private final By CVC = By.cssSelector(".content.ng-tns-c46-5 label");
 
     public OnlinePay(WebDriver driver) {
-        this.driver = driver;
+        OnlinePay.driver = driver;
+        OnlinePay.wait = new WebDriverWait(driver, 1);
     }
 
     public static By conPhone() {
@@ -76,34 +80,42 @@ public class OnlinePay {
     }
 
     public void typeTelephone(String telephone) {
+        ifCookies();
         driver.findElement(telephoneLocator).sendKeys(telephone);
     }
 
     public void typeMoney(String money) {
+
         driver.findElement(moneyLocator).sendKeys(money);
     }
 
     public void typeEmail(String email) {
+
         driver.findElement(emailLocator).sendKeys(email);
     }
 
     public void submitPay() {
+        ifCookies();
         driver.findElement(submitButton).click();
     }
 
-    public void selectMenuItem(int meniItem) throws InterruptedException {
+    public void selectMenuItem(int meniItem) {
 
         ifCookies();
         driver.findElement(menuButton).click();
         driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[1]/div[1]/div[2]/ul/li[" + meniItem + "]/p")).click();
-        Thread.sleep(500);
+
     }
 
-    public void ifCookies() throws InterruptedException {
-        Thread.sleep(500);
-        if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
-            driver.findElement(By.id("cookie-agree")).click();
-        }
+    public void ifCookies() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(cookiesBtn()));
+            if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
+                driver.findElement(By.id("cookie-agree")).click();
+            }
+        }catch (TimeoutException ignored){}
+
+
     }
 
     public boolean checkPlaceholder(By item, String text) {
@@ -112,6 +124,10 @@ public class OnlinePay {
 
     public ExpectedCondition<WebDriver> switchToFrame() {
         return ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator);
+    }
+
+    public By cookiesBtn() {
+        return By.id("cookie-agree");
     }
 
     public By getSpanFrameLocator() {
