@@ -74,12 +74,12 @@ public class TestCase {
         onlinePay.submitPay();
 
         Thread.sleep(1500);
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className("bepaid-iframe")));
+        wait.until(onlinePay.switchToFrame());
         Thread.sleep(1500);
 
-        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]")).getText(), coins + ".00 BYN", "Сумма в заголовке неправильная");
-        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/button")).getText(), "Оплатить " + coins + ".00 BYN", "Сумма на кнопке неправильная");
-        Assertions.assertEquals(driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[2]/span")).getText(), "Оплата: Услуги связи Номер:375" + tel, "Телефон неправильный");
+        Assertions.assertEquals(driver.findElement(onlinePay.getSpanFrameLocator()).getText(), coins + ".00 BYN", "Сумма в заголовке неправильная");
+        Assertions.assertEquals(driver.findElement(onlinePay.getButtonFrameLocator()).getText(), "Оплатить " + coins + ".00 BYN", "Сумма на кнопке неправильная");
+        Assertions.assertEquals(driver.findElement(onlinePay.getTelFrameLocator()).getText(), "Оплата: Услуги связи Номер:375" + tel, "Телефон неправильный");
 
 
         Assertions.assertEquals("Номер карты", driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[1]/label")).getText(), "Плейсхолдер Номер карты неправильный");

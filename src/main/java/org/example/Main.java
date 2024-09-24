@@ -3,6 +3,8 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Objects;
 
@@ -26,9 +28,12 @@ public class Main {
         By telephoneLocator = By.id("connection-phone");
         By moneyLocator = By.id("connection-sum");
         By emailLocator = By.id("connection-email");
-        By submitButton = By.xpath("/html/body/div[6]/main/div/div[4]/div[1]/div/div/div[2]/section/div/div[1]/div[2]/form[1]/button");
-        By menuButton = By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[1]/div[1]/div[2]");
-
+        By submitButton = By.cssSelector("#pay-connection button");
+        By menuButton = By.cssSelector("#pay__form select");
+        By frameLocator = By.className("bepaid-iframe");
+        By spanFrameLocator = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]");
+        By buttonFrameLocator = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/button");
+        By telFrameLocator = By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[2]/span");
 
         public OnlinePay(WebDriver driver) {
             this.driver = driver;
@@ -67,6 +72,21 @@ public class Main {
 
         public boolean checkPlaceholder(By item, String text) {
             return Objects.equals(driver.findElement(item).getAttribute("placeholder"), text);
+        }
+        public ExpectedCondition<WebDriver> switchToFrame(){
+           return ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator);
+        }
+
+        public By getSpanFrameLocator() {
+            return spanFrameLocator;
+        }
+
+        public By getButtonFrameLocator() {
+            return buttonFrameLocator;
+        }
+
+        public By getTelFrameLocator() {
+            return telFrameLocator;
         }
     }
 }
