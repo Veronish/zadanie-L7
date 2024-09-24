@@ -16,7 +16,7 @@ public class TestCase {
     @DisplayName("Подготовка")
     @BeforeAll
     static void test0() {
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         onlinePay = new OnlinePay(driver);
         wait = new WebDriverWait(driver, 4);
@@ -24,11 +24,13 @@ public class TestCase {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(onlinePay.cookiesBtn()));
             onlinePay.ifCookies();
-        }catch (TimeoutException ignored){}
+        } catch (TimeoutException ignored) {
+        }
 
     }
+
     @AfterAll
-    static void after(){
+    static void after() {
         driver.quit();
     }
 
@@ -63,7 +65,7 @@ public class TestCase {
 
     @Test
     @DisplayName("Заполнить поля и нажать продолжить, проверить поля")
-    void test2()  {
+    void test2() {
         driver.get("https://mts.by");
         String coins = "44";
         String tel = "297777777";

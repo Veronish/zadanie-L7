@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class OnlinePay {
     private static WebDriver driver = null;
-    private static WebDriverWait wait =null;
+    private static WebDriverWait wait = null;
     private final By telephoneLocator = By.id("connection-phone");
     private final By moneyLocator = By.id("connection-sum");
     private final By emailLocator = By.id("connection-email");
@@ -113,7 +113,8 @@ public class OnlinePay {
             if (driver.findElement(By.id("cookie-agree")).isDisplayed()) {
                 driver.findElement(By.id("cookie-agree")).click();
             }
-        }catch (TimeoutException ignored){}
+        } catch (TimeoutException ignored) {
+        }
 
 
     }
