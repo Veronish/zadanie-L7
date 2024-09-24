@@ -27,51 +27,51 @@ public class OnlinePay {
         this.driver = driver;
     }
 
-    public static By conPhone(WebDriver driver) {
+    public static By conPhone() {
         return By.id("connection-phone");
     }
 
-    public static By conSum(WebDriver driver) {
+    public static By conSum() {
         return By.id("connection-sum");
     }
 
-    public static By conEmail(WebDriver driver) {
+    public static By conEmail() {
         return By.id("connection-email");
     }
 
-    public static By intrPhone(WebDriver driver) {
+    public static By intrPhone() {
         return By.id("internet-phone");
     }
 
-    public static By intrSum(WebDriver driver) {
+    public static By intrSum() {
         return By.id("internet-sum");
     }
 
-    public static By intrEmail(WebDriver driver) {
+    public static By intrEmail() {
         return By.id("internet-email");
     }
 
-    public static By instBill(WebDriver driver) {
+    public static By instBill() {
         return By.id("score-instalment");
     }
 
-    public static By instSum(WebDriver driver) {
+    public static By instSum() {
         return By.id("instalment-sum");
     }
 
-    public static By instEmail(WebDriver driver) {
+    public static By instEmail() {
         return By.id("instalment-email");
     }
 
-    public static By arrBill(WebDriver driver) {
+    public static By arrBill() {
         return By.id("score-arrears");
     }
 
-    public static By arrSum(WebDriver driver) {
+    public static By arrSum() {
         return By.id("arrears-sum");
     }
 
-    public static By arrEmail(WebDriver driver) {
+    public static By arrEmail() {
         return By.id("arrears-email");
     }
 

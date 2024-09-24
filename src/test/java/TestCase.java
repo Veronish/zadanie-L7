@@ -22,27 +22,27 @@ public class TestCase {
 
         onlinePay.ifCookies();
 
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conPhone(driver), "Номер телефона"), "Плейсхолдер Номер телефона не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conSum(driver), "Сумма"), "Плейсхолдер Сумма не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conEmail(driver), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conPhone(), "Номер телефона"), "Плейсхолдер Номер телефона не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conSum(), "Сумма"), "Плейсхолдер Сумма не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.conEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
         onlinePay.selectMenuItem(2);
 
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrPhone(driver), "Номер абонента"), "Плейсхолдер Номер абонента не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrSum(driver), "Сумма"), "Плейсхолдер Сумма не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrEmail(driver), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrPhone(), "Номер абонента"), "Плейсхолдер Номер абонента не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrSum(), "Сумма"), "Плейсхолдер Сумма не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.intrEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
         onlinePay.selectMenuItem(3);
 
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instBill(driver), "Номер счета на 44"), "Плейсхолдер Номер счета на 44 не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instSum(driver), "Сумма"), "Плейсхолдер Сумма не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instEmail(driver), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instBill(), "Номер счета на 44"), "Плейсхолдер Номер счета на 44 не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instSum(), "Сумма"), "Плейсхолдер Сумма не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.instEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
         onlinePay.selectMenuItem(4);
 
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrBill(driver), "Номер счета на 2073"), "Плейсхолдер Номер счета на 2073 не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrSum(driver), "Сумма"), "Плейсхолдер Сумма не совпадает");
-        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrEmail(driver), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrBill(), "Номер счета на 2073"), "Плейсхолдер Номер счета на 2073 не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrSum(), "Сумма"), "Плейсхолдер Сумма не совпадает");
+        Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
 
         //Thread.sleep(1500);
