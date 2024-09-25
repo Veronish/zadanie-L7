@@ -2,22 +2,24 @@ import org.example.OnlinePay;
 import org.example.Picture;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestCase {
 
-    private static WebDriver driver = null;
+    private static EventFiringWebDriver driver = null;
     private static OnlinePay onlinePay = null;
     private static WebDriverWait wait = null;
+
 
     @DisplayName("Подготовка")
     @BeforeAll
     static void test0() {
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = new EventFiringWebDriver(new ChromeDriver());
         onlinePay = new OnlinePay(driver);
         wait = new WebDriverWait(driver, 4);
         driver.get("https://mts.by");
@@ -33,6 +35,7 @@ public class TestCase {
     static void after() {
         driver.quit();
     }
+
 
     @Test
     @DisplayName("Надписи в незаполненных полях")
@@ -62,6 +65,7 @@ public class TestCase {
         Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
     }
+
 
     @Test
     @DisplayName("Заполнить поля и нажать продолжить, проверить поля")
