@@ -1,23 +1,31 @@
 import org.example.OnlinePay;
 import org.example.Picture;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class TestCase {
 
-    private static WebDriver driver = null;
+    private static EventFiringWebDriver driver = null;
     private static OnlinePay onlinePay = null;
     private static WebDriverWait wait = null;
+
 
     @DisplayName("Подготовка")
     @BeforeAll
     static void test0() {
+
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = new EventFiringWebDriver(new ChromeDriver());
         onlinePay = new OnlinePay(driver);
         wait = new WebDriverWait(driver, 4);
         driver.get("https://mts.by");
@@ -33,6 +41,7 @@ public class TestCase {
     static void after() {
         driver.quit();
     }
+
 
     @Test
     @DisplayName("Надписи в незаполненных полях")
@@ -62,6 +71,7 @@ public class TestCase {
         Assertions.assertTrue(onlinePay.checkPlaceholder(OnlinePay.arrEmail(), "E-mail для отправки чека"), "Плейсхолдер E-mail для отправки чека не совпадает");
 
     }
+
 
     @Test
     @DisplayName("Заполнить поля и нажать продолжить, проверить поля")
@@ -97,6 +107,49 @@ public class TestCase {
 
 
     }
+
+    @Test
+    @DisplayName("Заголовок")
+    void test3() {
+        driver.get("https://mts.by");
+
+        Assertions.assertEquals("Онлайн пополнение\nбез комиссии", driver.findElement(onlinePay.getTitle()).getText());
+
+
+    }
+
+    @Test
+    @DisplayName("Картинки платежных систем")
+    void test4() {
+        driver.get("https://mts.by");
+
+        Assertions.assertTrue(Picture.pic1(driver).isEnabled(), "Visa не отображается");
+        Assertions.assertTrue(Picture.pic2(driver).isEnabled(), "Visa не отображается");
+        Assertions.assertTrue(Picture.pic3(driver).isEnabled(), "Mastercard не отображается");
+        Assertions.assertTrue(Picture.pic4(driver).isEnabled(), "Mastercard не отображается");
+        Assertions.assertTrue(Picture.pic5(driver).isEnabled(), "Белкарт не отображается");
+
+    }
+
+    @Test
+    @DisplayName("Ссылка подробнее о сервисе")
+    void test5() throws IOException {
+
+        driver.get("https://mts.by");
+        HttpURLConnection huc = null;
+        huc = (HttpURLConnection) (new URL("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/").openConnection());
+        if (huc.getResponseCode() >= 400) {
+            System.out.println("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/" + " is a broken link");
+            Assertions.fail();
+        } else {
+            System.out.println("https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/" + " is a valid link");
+
+        }
+
+
+    }
+
+
 
 
 }

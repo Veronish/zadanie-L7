@@ -25,4 +25,24 @@ public class Picture {
     public static WebElement mir2Pic(WebDriver driver) {
         return driver.findElement(By.cssSelector("img[src='assets/images/payment-icons/card-types/maestro-system.svg']"));
     }
+
+    public static WebElement pic1(WebDriver driver) {
+        return driver.findElement(By.cssSelector("img[src='/local/templates/new_design/assets/html/images/pages/index/pay/visa.svg']"));
+    }
+
+    public static WebElement pic2(WebDriver driver) {
+        return driver.findElement(By.cssSelector("img[src='/local/templates/new_design/assets/html/images/pages/index/pay/visa-verified.svg']"));
+    }
+
+    public static WebElement pic3(WebDriver driver) {
+        return driver.findElement(By.cssSelector("img[src='/local/templates/new_design/assets/html/images/pages/index/pay/mastercard.svg']"));
+    }
+
+    public static WebElement pic4(WebDriver driver) {
+        return driver.findElement(By.cssSelector("img[src='/local/templates/new_design/assets/html/images/pages/index/pay/mastercard-secure.svg']"));
+    }
+
+    public static WebElement pic5(WebDriver driver) {
+        return driver.findElement(By.cssSelector("img[src='/local/templates/new_design/assets/html/images/pages/index/pay/belkart.svg']"));
+    }
 }

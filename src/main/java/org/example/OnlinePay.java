@@ -25,11 +25,15 @@ public class OnlinePay {
     private final By cardDate = By.cssSelector(".content.ng-tns-c46-4 label");
     private final By cardName = By.cssSelector(".content.ng-tns-c46-3 label");
     private final By CVC = By.cssSelector(".content.ng-tns-c46-5 label");
+    private final By title = By.cssSelector(".pay__wrapper h2");
 
     public OnlinePay(WebDriver driver) {
         OnlinePay.driver = driver;
         OnlinePay.wait = new WebDriverWait(driver, 1);
     }
+
+
+
 
     public static By conPhone() {
         return By.id("connection-phone");
@@ -157,6 +161,10 @@ public class OnlinePay {
 
     public By getCVC() {
         return CVC;
+    }
+
+    public By getTitle(){
+        return title;
     }
 
 }
