@@ -1,14 +1,11 @@
 import org.example.OnlinePay;
 import org.example.Picture;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -102,8 +99,7 @@ public class TestCase {
         Assertions.assertTrue(Picture.visaPic(driver).isEnabled(), "Visa не отображается");
         Assertions.assertTrue(Picture.mastercardPic(driver).isEnabled(), "Mastercard не отображается");
         Assertions.assertTrue(Picture.belcartPic(driver).isEnabled(), "Белкарт не отображается");
-        Assertions.assertTrue((Picture.mirPic(driver).isEnabled()) ||
-                (Picture.mir2Pic(driver).isEnabled()), "Мир не отображается");
+        Assertions.assertTrue((Picture.mirPic(driver).isEnabled()) || (Picture.mir2Pic(driver).isEnabled()), "Мир не отображается");
 
 
     }
@@ -148,8 +144,6 @@ public class TestCase {
 
 
     }
-
-
 
 
 }
